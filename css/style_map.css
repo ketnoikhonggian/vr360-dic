@@ -1,0 +1,115 @@
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.close-sodo {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+  display: block;
+  border: 2px solid red;
+  line-height: 24px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  color: red;
+  cursor: pointer;
+}
+
+#mbp {
+  display: none;
+  position: fixed;
+  z-index: 1003;
+  width: auto;
+  height: auto;
+  max-width: 95vw;
+  max-height: 95vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffffff;
+}
+
+#btn-action {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 1002;
+}
+
+#btn-action button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#btn-action button img {
+  width: 20px;
+  height: auto;
+}
+
+input[type="range"][orient="vertical"] {
+  -webkit-writing-mode: bt-lr;
+      -ms-writing-mode: bt-lr;
+          writing-mode: bt-lr;
+  /* IE */
+  -webkit-appearance: slider-vertical;
+  /* WebKit */
+  width: 8px;
+  height: 175px;
+  padding: 0 5px;
+}
+
+#text-zoom {
+  display: none;
+  position: absolute;
+  width: 100px;
+  right: -25px;
+  bottom: 2px;
+  color: white;
+}
+
+.tooltip-custom {
+  position: fixed;
+  pointer-events: none;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 5px;
+  z-index: 1002;
+  -webkit-box-shadow: #000 0px 0px 5px;
+          box-shadow: #000 0px 0px 5px;
+  /* color: #ffffff; */
+  min-width: 150px;
+  display: none;
+  text-align: center;
+}
+
+.tooltip-custom::after {
+  content: "";
+  border: 10px solid #ffffff;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 100%);
+          transform: translate(-50%, 100%);
+}
+
+.tooltip-custom #tooltip-custom_img {
+  text-align: center;
+}
+
+.tooltip-custom #tooltip-custom_img img {
+  max-width: 100%;
+  height: auto;
+  max-height: 100px;
+}
+/*# sourceMappingURL=style_map.css.map */

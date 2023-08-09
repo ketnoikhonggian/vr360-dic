@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: UVNThoiNay;
+    src: url(fonts/UVNThoiNay_B.TTF);
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@media only screen and (min-device-width:800px) {
+    html {
+        overflow: hidden;
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'UVNThoiNay', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #000000;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    position: fixed;
+    bottom: 6px;
+    left: 7px;
+    color: #692616;
+}
+
+.menu ul {
+    display: flex;
+}
+
+.menu li {
+    text-transform: uppercase;
+    background-image: url(../images/bkg_menu.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 245px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+.sub_menu ul {
+    display: none;
+}
+
+.sub_menu.active ul {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+}
+
+.sub_menu ul li {
+    text-transform: none;
+    background-image: url(../images/bkg_sub_menu.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.sub_menu ul li::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    background-image: url(../images/list_style.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    display: block;
+}
+
+#btn-right-top {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+}
+
+#btn-right-top li {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#btn-right-top li img {
+    object-fit: contain;
+    height: 40px;
+    width: 40px;
+}
+
+#btn-right-top #btn-utilities {
+    position: relative;
+    filter: invert(61%) sepia(31%) saturate(7410%) hue-rotate(348deg) brightness(98%) contrast(93%);
+}
+
+#btn-right-top #btn-utilities.off {
+    filter: invert(27%) sepia(11%) saturate(2113%) hue-rotate(130deg) brightness(94%) contrast(78%);
+}
+
+@media screen and (max-width:566px) {
+    .menu {
+        bottom: 0px;
+        left: -20px;
+        transform: scale(0.7);
+    }
+
+    .menu>ul {
+        display: flex;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .menu>ul>li:first-child {
+        margin-bottom: 5px;
+    }
+
+    #btn-right-top {
+        top: 75px;
+        right: 24px;
+    }
+}
+
+// Begin: Thumb
+.list-group-thumbnail {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    min-height: 110px;
+    bottom: -100%;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.list-group-thumbnail.show {
+    bottom: 70px;
+    opacity: 1;
+}
+
+.list-group-thumbnail ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.list-group-thumbnail ul li {
+    cursor: pointer;
+    width: 212px;
+    height: 100px;
+    border: 3px solid rgb(255, 255, 255);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 790px) {
+    .list-group-thumbnail ul li {
+        width: 170px;
+        height: 80px;
+    }
+}
+
+.list-group-thumbnail ul li {
+    margin: 7px;
+}
+
+.list-group-thumbnail ul li:hover,
+.list-group-thumbnail ul li.active {
+    border-color: rgb(255, 153, 51);
+}
+
+.list-group-thumbnail ul li img {
+    width: 100%;
+}
+
+.thumbnail-info {
+    position: relative;
+}
+
+.thumbnail-title {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    bottom: 4px;
+    font-size: 13px;
+    display: none;
+}
+
+#btn-thumb {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 50px;
+    cursor: pointer;
+    display: none;
+}
+
+#btn-thumb.show {
+    display: block;
+}
+
+#btn-thumb img {
+    width: 100%;
+    height: auto;
+}
+
+// End: Thumb

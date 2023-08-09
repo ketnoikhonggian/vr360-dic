@@ -1,0 +1,112 @@
+<krpano>
+    <include url="%SWFPATH%/plugins/showtext.xml" />
+    <include url="%SWFPATH%/plugins/showimage.xml" />
+
+    <autorotate enabled="true" waittime="1.0" accel="1.0" speed="1.0" horizon="0.0" tofov="120.0" />
+
+    <textstyle name="hotspottextstyle" font="Arial" fontsize="18" bold="true" padding="5 10" italic="false" textcolor="0xff9900" background="true" backgroundcolor="0x333333" border="true" bordercolor="0xff9900" alpha="1" blendmode="layer" effect="glow(0x000000,0.5,4,3);dropshadow(4,45,0x000000,4,0.66);" origin="cursor" edge="bottom" textalign="center" xoffset="0" yoffset="-5" noclip="true" showtime="0.1" fadetime="0.25" fadeintime="0.1" />
+    <textstyle name="hotspottextstyle2" font="Arial" fontsize="18" bold="true" padding="5 10" italic="false" textcolor="0xff9900" background="true" backgroundcolor="0x333333" border="true" bordercolor="0xff9900" alpha="1" blendmode="layer" effect="glow(0x000000,0.5,4,3);dropshadow(4,45,0x000000,4,0.66);" origin="cursor" edge="bottom" textalign="center" xoffset="0" yoffset="-5" noclip="true" showtime="3" fadetime="0.25" fadeintime="0.1" />
+
+    <action name="hotspot_animate">
+            if(loaded,
+            inc(frame,1,get(frames),0);
+            mul(ypos,frame,frameheight);
+            txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight));
+            delayedcall(0.03, hotspot_animate() );
+            );
+    </action>
+
+    <action name="do_crop_animation" args="framewidth, frameheight, framerate">
+        <!-- add attributes to the hotspot -->
+            registerattribute(xframes, calc((imagewidth / %1) BOR 0));
+            registerattribute(yframes, calc((imageheight / %2) BOR 0));
+            registerattribute(frames, calc(xframes * yframes));
+            registerattribute(frame, 0);
+
+            set(crop, '0|0|%1|%2');
+
+            setinterval(calc('crop_anim_' + name), calc(1.0 / %3),
+                if(loaded,
+                    inc(frame);
+                    if(frame GE frames, if(onlastframe !== null, onlastframe() ); set(frame,0); );
+                    mod(xpos, frame, xframes);
+                    div(ypos, frame, xframes);
+                    Math.floor(ypos);
+                    mul(xpos, %1);
+                    mul(ypos, %2);
+                    calc(crop, xpos + '|' + ypos + '|%1|%2');,
+                    clearinterval(calc('crop_anim_' + name));
+                );
+            );
+            if(device.mobile, set(scale,0.5));
+    </action>
+    <layer name="btn_back" url="%SWFPATH%/images/btn_back.png" align="rightbottom" x="0" y="0" keep="true" scale="1" onclick="loadscene(get(scene[0].name),null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb());" visible="false"/>
+    <!--End Speaker-->
+    <plugin name="soundinterface" url="%SWFPATH%/plugins/soundinterface.swf" alturl="%SWFPATH%/plugins/soundinterface.js" rootpath="%CURRENTXML%" preload="true" keep="true" volume="0.3" />
+    <plugin name="snd" url="soundonoff.png" keep="true" align="rightbottom" x="10" y="70" alpha="0.5" scale="1.0" onover="tween(alpha,1);" onout="tween(alpha,0.5);" crop="0|0|50|50" onclick="switch(soundinterface.mute); switch(crop, 0|0|50|50, 0|50|50|50);" />
+    <!--End Speaker-->
+    <!-- Begin: Logo -->
+    <layer name="logo" url="%SWFPATH%/images/logo.png" align="lefttop" x="15" y="15" keep="true" scale="0.05" onclick="loadscene(get(scene[0].name),null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear))"/>
+    <action name="logo_update">
+        if(stagewidth LT 560, 
+            set(layer[logo].scale, 0.5); 
+            set(layer[logo].scale, 0.8);
+        );
+    </action>
+    <!-- End: Logo -->
+    <!-- Begin: Day night -->
+    <layer name="ngaydem_bt" title="Ngày đêm" url="%SWFPATH%/images/moon.png" x="20" y="80" keep="true" handcursor="false" capture="false" align="righttop" scale="0.08" scalechildren="true" onclick="js(setNgayDem());" onhover="showtext('Đêm',hotspottextstyle);" />
+    <action name="setimage">
+		if(get(ngaydem),
+            set(preview.url, %SWFPATH%/panos/dem/%1.tiles/preview.jpg);
+            set(image.cube.url, %SWFPATH%/panos/dem/%1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg);
+            ,
+            set(preview.url, %SWFPATH%/panos/ngay/%1.tiles/preview.jpg);
+            set(image.cube.url, %SWFPATH%/panos/ngay/%1.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg);
+        )
+        js(viewScene());
+    </action>
+    <action name="day_night_update">
+        if(stagewidth LT 560, 
+            set(layer[ngaydem_bt].x, 25);
+            set(layer[ngaydem_bt].y, 80);
+            , 
+            set(layer[ngaydem_bt].x, 40);
+            set(layer[ngaydem_bt].y, 105);
+        );
+    </action>
+    <!-- End: Day night -->
+    <!-- Begin: Compass -->
+    <layer name="compass2" url="%SWFPATH%/images/compass_bg.png" align="righttop" x="0" y="-5" keep="true" children="false" scalechildren="true">
+        <layer name="compass2_pointer" url="%SWFPATH%/images/compass.png" align="center" zorder="1" />
+    </layer>
+    <action name="compass_update_rotate">
+        calc(layer[compass2_pointer].rotate, -(view.hlookat + global_heading));
+        if(stagewidth LT 560, 
+            set(layer[logo].scale, 0.5); 
+            set(layer[compass2].scale, 0.7);
+            set(layer[ngaydem_bt].x, 20);
+            set(layer[ngaydem_bt].y, 80);
+            , 
+            set(layer[logo].scale, 0.8);
+            set(layer[compass2].scale, 1);
+            set(layer[ngaydem_bt].x, 40);
+            set(layer[ngaydem_bt].y, 105);
+        );
+    </action>
+    <!-- End: Compass -->
+    <events name="compass_events" keep="true" onviewchange="compass_update_rotate();logo_update();day_night_update();" />
+    <!-- Begin: Skin hotspot -->
+    <style name="utilities_1" url="%SWFPATH%/images/hotspot_utilities/Tỉnh ủy Hậu Giang.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_2" url="%SWFPATH%/images/hotspot_utilities/BV đa khoa Hậu Giang.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_3" url="%SWFPATH%/images/hotspot_utilities/THCS Châu Văn Liêm.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_4" url="%SWFPATH%/images/hotspot_utilities/Cao đẳng Hậu Giang.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_5" url="%SWFPATH%/images/hotspot_utilities/Sân bay Cần Thơ.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_6" url="%SWFPATH%/images/hotspot_utilities/CV Hòa Bình.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_7" url="%SWFPATH%/images/hotspot_utilities/CV chiến thắng.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_8" url="%SWFPATH%/images/hotspot_utilities/UBND Hậu Giang.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_9" url="%SWFPATH%/images/hotspot_utilities/THPT Vị Thanh.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_10" url="%SWFPATH%/images/hotspot_utilities/Chợ đêm Vị Thanh.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <style name="utilities_11" url="%SWFPATH%/images/hotspot_utilities/Coop mart.png" edge="top" distorted="true" tooltip="" linkedscene="" linkedscene_lookat="" onclick="skin_hotspotstyle_click();" depth="1000" scale="0.3" onover="tween(scale,0.3);" onout="tween(scale,0.3);" onloaded="skin_hotspotstyle_setup();" />
+    <!-- End: Skin hotspot -->
+</krpano>

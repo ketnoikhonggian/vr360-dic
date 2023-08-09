@@ -1,0 +1,400 @@
+﻿<krpano version="1.20.9" title="Virtual Tour Vị Thanh">
+
+	<include url="skin/vtourskin.xml" />
+	<include url="xml/main.xml" />
+
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+	<skin_settings maps="false" maps_type="google" maps_bing_api_key="" maps_google_api_key="" maps_zoombuttons="false" maps_loadonfirstuse="true" gyro="true" gyro_keeplookingdirection="false" webvr="true" webvr_keeplookingdirection="true" webvr_prev_next_hotspots="true" autotour="false" littleplanetintro="false" followmousecontrol="false" title="true" thumbs="true" thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160" thumbs_opened="false" thumbs_text="false" thumbs_dragging="true" thumbs_onhoverscrolling="false" thumbs_scrollbuttons="false" thumbs_scrollindicator="false" thumbs_loop="false" tooltips_buttons="false" tooltips_thumbs="false" tooltips_hotspots="false" tooltips_mapspots="false" deeplinking="false" loadscene_flags="MERGE" loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)" loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)" loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)" loadingtext="" layout_width="100%" layout_maxwidth="814" controlbar_width="-24" controlbar_height="40" controlbar_offset="20" controlbar_offset_closed="-40" controlbar_overlap.no-fractionalscaling="10" controlbar_overlap.fractionalscaling="0" design_skin_images="vtourskin.png" design_bgcolor="0x2D3E50" design_bgalpha="0.8" design_bgborder="0" design_bgroundedge="1" design_bgshadow="0 4 10 0x000000 0.3" design_thumbborder_bgborder="3 0xFFFFFF 1.0" design_thumbborder_padding="2" design_thumbborder_bgroundedge="0" design_text_css="color:#FFFFFF; font-family:Arial;" design_text_shadow="1" />
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml" /> -->
+
+
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+		loadscene(get(startscene), null, MERGE);
+		if(startactions !== null, startactions() );
+		playsound(s1,music/yiruma.mp3, 0,5);
+		set(layer[skin_layer].visible, false);
+	</action>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_1-100m" title="Du an Vi Thanh-Vi tri 1-100m" onstart="updateCustom()" thumburl="panos/ngay/Du_an_Vi_Thanh-Vi_tri_1-100m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            setimage(Du_an_Vi_Thanh-Vi_tri_1-100m);
+            set(global_heading, 0);
+		</action>
+
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="22.269" vlookat="35.132" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/ngay/Du_an_Vi_Thanh-Vi_tri_1-100m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/ngay/Du_an_Vi_Thanh-Vi_tri_1-100m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="24.546" atv="-4.405" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="-40.311" atv="41.099" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_4-2_5m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-5.484" atv="17.458" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_5-5m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot4" ath="62.123" atv="21.026" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_8-8m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot5"  ath="27.038" atv="-18.626" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_16,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_2-100m" title="Du an Vi Thanh-Vi tri 2-100m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_2-100m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="204.025" vlookat="33.563" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_2-100m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_2-100m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-155.800" atv="0.064" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="23.495" atv="-0.313" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-107.639" atv="22.583" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_6-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot4" ath="-156.031" atv="25.063" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_7-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot5" ath="152.766" atv="15.318" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_9-15m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot6" ath="24.604" atv="8.780" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_13,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot7" ath="79.417" atv="11.273" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_17,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_3-100m" title="Du an Vi Thanh-Vi tri 3-100m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_3-100m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="25.192" vlookat="35.040" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_3-100m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_3-100m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-63.512" atv="18.268" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_11-7m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="102.206" atv="27.451" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_15-8m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="49.681" atv="21.274" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_12-8m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot4" ath="70.035" atv="12.649" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_14-2m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot5" ath="23.133" atv="-1.985" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot6" ath="23.011" atv="69.506" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_13,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_4-2_5m" title="Du an Vi Thanh-Vi tri 4-2,5m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_4-2_5m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="51.331" vlookat="-1.619" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_4-2_5m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_4-2_5m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="99.022" atv="-13.088" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_5-5m" title="Du an Vi Thanh-Vi tri 5-5m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_5-5m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="64.789" vlookat="7.254" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_5-5m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_5-5m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="148.751" atv="-14.576" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_6-20m" title="Du an Vi Thanh-Vi tri 6-20m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_6-20m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_6-20m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_6-20m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="49.345" atv="6.663" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_7-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="119.104" atv="-15.422" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-43.861" atv="-12.142" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_7-20m" title="Du an Vi Thanh-Vi tri 7-20m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_7-20m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-9.202" vlookat="16.313" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_7-20m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_7-20m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="0.362" atv="-10.503" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="179.644" atv="-6.398" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-64.056" atv="2.148" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_6-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot4" ath="92.618" atv="3.444" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_9-15m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_8-8m" title="Du an Vi Thanh-Vi tri 8-8m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_8-8m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-95.940" vlookat="16.341" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_8-8m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_8-8m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="28.754" atv="-13.115" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="150.404" atv="-11.928" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_9-15m" title="Du an Vi Thanh-Vi tri 9-15m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_9-15m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-82.640" vlookat="8.155" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_9-15m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_9-15m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-87.814" atv="1.900" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_7-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="-136.698" atv="-7.263" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-42.361" atv="-9.589" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot4"  ath="-51.696" atv="-20.263" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_16,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_10-4m" title="Du an Vi Thanh-Vi tri 10-4m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_10-4m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_10-4m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_10-4m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="103.919" atv="-17.189" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_11-7m" title="Du an Vi Thanh-Vi tri 11-7m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_11-7m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_11-7m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_11-7m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="86.600" atv="-13.244" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_12-8m" title="Du an Vi Thanh-Vi tri 12-8m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_12-8m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_12-8m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_12-8m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-7.252" atv="-14.941" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_13" title="Du_an_Vi_Thanh-Vi_tri_13" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_13.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_13.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_13.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+
+		<hotspot name="spot1"  ath="174.261" atv="-12.357" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot2"  ath="-5.123" atv="-9.353" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot3"  ath="173.295" atv="-20.844" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_16,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_14-2m" title="Du an Vi Thanh-Vi tri 14-2m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_14-2m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="69.595" vlookat="-4.010" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_14-2m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_14-2m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="70.650" atv="-19.647" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_15-8m" title="Du an Vi Thanh-Vi tri 15-8m" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_15-8m.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_15-8m.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_15-8m.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-26.929" atv="-9.440" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_16" title="Du_an_Vi_Thanh-Vi_tri_16" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_16.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-142.898" vlookat="32.315" fovtype="MFOV" fov="127.866" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_16.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_16.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+	
+		<hotspot name="spot1"  ath="-138.577" atv="0.545" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_1-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot2"  ath="40.405" atv="6.755" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_3-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot3"  ath="-116.497" atv="26.381" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_6-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot4"  ath="-171.472" atv="19.674" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_9-15m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot5"  ath="130.138" atv="31.549" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_17,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot6"  ath="41.723" atv="32.523" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_13,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot7"  ath="-27.586" atv="25.401" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_14-2m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot8"  ath="12.255" atv="25.457" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_15-8m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot9"  ath="-139.230" atv="23.688" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_7-20m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+		<hotspot name="spot10"  ath="-121.278" atv="20.182" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_5-5m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))"  />
+	</scene>
+
+	<scene name="scene_Du_an_Vi_Thanh-Vi_tri_17" title="Du_an_Vi_Thanh-Vi_tri_17" onstart="updateCustom()" thumburl="panos/Du_an_Vi_Thanh-Vi_tri_17.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/Du_an_Vi_Thanh-Vi_tri_17.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/Du_an_Vi_Thanh-Vi_tri_17.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="spot1" ath="-58.467" atv="-28.145" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_2-100m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot2" ath="-2.561" atv="-18.221" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_16,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+		<hotspot name="spot3" ath="-92.583" atv="-2.624" url="skin/hotspot2.png" onloaded="do_crop_animation(128,112,4);" scale='0.5' zoom="false" onclick="loadscene(scene_du_an_vi_thanh-vi_tri_9-15m,null,MERGE,OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)); js(showHideBtnThumb(1))" />
+
+	</scene>
+
+	<scene name="scene_tienichngoaikhu" title="tienichngoaikhu" onstart="updateCustom()" thumburl="panos/tienichngoaikhu.tiles/thumb.jpg" lat="9.79634111" lng="105.47334306" heading="0.0">
+		<action name="updateCustom">
+			js(eventKrpano());
+            set(global_heading, 0);
+		</action>
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-522.889" vlookat="10.085" fovtype="MFOV" fov="111.457" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/tienichngoaikhu.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/tienichngoaikhu.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1664,3200" />
+		</image>
+		<hotspot name="utilities_2" style="utilities_2" ath="-171.333" atv="-7.000"/>
+		<hotspot name="utilities_1" style="utilities_1" ath="-173.010" atv="-2.000" />
+		<hotspot name="utilities_3" style="utilities_3" ath="-157.500" atv="-8.300" />
+		<hotspot name="utilities_4" style="utilities_4" ath="-142.500" atv="-7.500"/>
+		<hotspot name="utilities_5" style="utilities_5" ath="21.700" atv="-9.200" />
+		<hotspot name="utilities_6" style="utilities_6" ath="101.519" atv="-4.000" />
+		<hotspot name="utilities_7" style="utilities_7" ath="114.404" atv="-5.700" />
+		<hotspot name="utilities_8" style="utilities_8" ath="117.300" atv="-2.000" />
+		<hotspot name="utilities_9" style="utilities_9" ath="160.700" atv="-7.000" />
+		<hotspot name="utilities_10" style="utilities_10" ath="175.3" atv="-8" />
+		<hotspot name="utilities_11" style="utilities_11" ath="174.8" atv="-5.7" />
+
+	</scene>
+</krpano>
